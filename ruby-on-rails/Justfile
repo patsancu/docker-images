@@ -1,0 +1,5 @@
+build-image:
+   DA_TAG=$(date "+%Y%m%d%H%M%S"); docker build -t patsancu/ruby-on-rails . && docker tag patsancu/ruby-on-rails:latest patsancu/ruby-on-rails:$DA_TAG && echo -e "\n\nTag patsancu/ruby-on-rails:$DA_TAG created"
+
+run-image:
+    docker run -it --entrypoint /bin/bash --rm -v $(pwd):/home/ruby-dev/code patsancu/ruby-on-rails:latest
