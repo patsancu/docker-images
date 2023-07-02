@@ -1,0 +1,9 @@
+run:
+    docker compose up -d
+quit:
+    docker compose down --remove-orphans
+
+restart: quit run
+run-logs:
+    docker compose up
+restart-logs: quit run-logs

@@ -1,0 +1,28 @@
+version: '3.1'
+services:
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  dbPostgres:
+    image: postgres:10
+    restart: always
+    ports:
+    - 5432:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: mydb
+    volumes:
+      - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
+      - ./postgres-data:/var/lib/postgresql/data
+  metabase:
+    image: metabase/metabase:v0.46.6
+    ports:
+      - 3000:3000
+    volumes:
+      - ./metabase-data:/metabase
+    env_file:
+      - .metabase_env
