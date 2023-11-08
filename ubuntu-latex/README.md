@@ -1,5 +1,13 @@
-
 ### How to use
+Assuming you're in a folder that has a tex file, maybe the one [here](git@github.com:patsancu/cv.git)
+
+
+```
+docker run -it --rm -w /home/cv -v $(pwd):/home/cv/ patsancu/latex-ubuntu:0.1 /usr/bin/pdflatex *.tex
+```
+
+
+### This is an old how to
 ```
 FOLDER_WITH_TEX_FILES=~/dev/other/cv
 TEX_FILE_PDF_SUFFIX=cv_generated.pdf
